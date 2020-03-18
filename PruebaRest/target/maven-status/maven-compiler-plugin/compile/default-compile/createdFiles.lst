@@ -1,0 +1,6 @@
+api\rest\indra\entities\Persona.class
+api\rest\indra\rest\ApiCrud.class
+api\rest\indra\dao\IPersonaDao.class
+api\rest\indra\PersonaApirestApplication.class
+api\rest\indra\services\CrudService.class
+api\rest\indra\services\ICrudService.class
