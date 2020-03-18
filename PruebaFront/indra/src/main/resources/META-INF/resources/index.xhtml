@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>SpringBootH2CRUDApplication</title>
+    </h:head>
+
+    <h:body>
+        <h:form id="personamanagedbean-form">
+            <p:growl id="growl" sticky="true" />
+            <p:dataTable id="personaList" var="persona" value="#{personaManagedBean.personas}">
+                <p:column headerText="Cedula">
+                    <h:outputText value="#{persona.cedula}"/>
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <p:inputText id="nombreInput" value="#{persona.nombres}"/>
+                </p:column>
+
+                <p:column headerText="Apellido">
+                    <p:inputText id="apellidoInput" value="#{persona.apellidos}"/>
+                </p:column>
+
+                <p:column headerText="Genero">
+                    <p:inputText id="generoInput" value="#{persona.genero}"/>
+                </p:column>
+
+                <p:column headerText="Edad">
+                    <p:inputText value="#{persona.edad}"/>
+                </p:column>
+
+                <p:column>
+                    <p:commandButton value="Borrar" icon="ui-icon-closethick"
+                                     action="#{personaManagedBean.delete(persona)}"
+                                     styleClass="ui-priority-primary" update="personaList @form :personamanagedbean-form:growl">
+                    </p:commandButton>
+                </p:column>
+                <p:column>
+                    <p:commandButton style="float: right" id="update" value="Actualizar" styleClass="ui-priority-primary"
+                        action="#{personaManagedBean.update(persona)}" icon="ui-icon-disk" update="@form :personamanagedbean-form:growl">
+                        <f:ajax execute="@form" render="@form"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <h:form id="add">
+            <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
+                <p:outputLabel for="addCedula" value="Cedula" />
+                <p:inputText id="addCedula" value="#{personaManagedBean.persona.cedula}" />
+                <p:message for="addCedula" />
+                
+                <p:outputLabel for="addNombre" value="Nombre" />
+                <p:inputText id="addNombre" value="#{personaManagedBean.persona.nombres}" />
+                <p:message for="addNombre" />
+
+                <p:outputLabel for="addApellido" value="Apellido" />
+                <p:inputText id="addApellido" value="#{personaManagedBean.persona.apellidos}">
+                </p:inputText>
+                <p:message for="addApellido" />
+
+                <p:outputLabel for="addGenero" value="Genero" />
+                <p:inputText id="addGenero" value="#{personaManagedBean.persona.genero}">
+                </p:inputText>
+                <p:message for="addGenero" />
+
+                <p:outputLabel for="addEdad" value="Edad" />
+                <p:inputText id="addEdad" value="#{personaManagedBean.persona.edad}">
+                </p:inputText>
+                <p:message for="addEdad" />
+
+                <p:commandButton update="@form :personamanagedbean-form:personaList :personamanagedbean-form:growl" value="Guardar" action="#{personaManagedBean.add}">
+                </p:commandButton>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
