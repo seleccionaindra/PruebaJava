@@ -1,0 +1,61 @@
+<h1>
+  {{ procesoEditar }} a: {{ persona.nombres }} {{ persona.apellidos }}
+</h1>
+
+<button [routerLink]="['home']" type="button" class="btn btn-outline-danger btn-sm animated fadeIn fast float-right">
+  Regresar
+</button>
+
+<div class="main-container">
+  <div class="jumbotron jumbotron-fluid row animated fadeIn fast">
+    <div class="container">
+      <form (ngSubmit)="guardarFormulario()" #forma="ngForm" autocomplete="off">
+
+        <div class="form-row">
+
+          <div class="form-group col-md-6">
+            <label for="inputNombres">Nombres:</label>
+            <input [(ngModel)]="persona.nombres" type="text" class="form-control" name="inputNombres" id="inputNombres" placeholder="Ej: Juanito" required>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="inputApellidos">Apellidos</label>
+            <input [(ngModel)]="persona.apellidos" type="text" class="form-control" name="inputApellidos" id="inputApellidos"  placeholder="Ej: Perez" required>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group col-md-4">
+            <label for="inputCedula">Cedula</label>
+            <input [(ngModel)]="persona.cedula" type="text" class="form-control" name="inputCedula" id="inputCedula" placeholder="Ej: 1234" required>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="inputEdad">Edad</label>
+            <input [(ngModel)]="persona.edad" type="number" class="form-control" name="inputEdad" id="inputEdad" placeholder="Ej: 18" required>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="inputGenero">Genero</label>
+            <select [(ngModel)]="persona.genero" name="inputGenero" id="inputGenero" class="form-control">
+              <option value="M">Masculino</option>
+              <option value="F" selected>Femenino</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div *ngIf="mostrarMensaje" class="alert alert-success" role="alert">
+          La petición fue exitosa.
+        </div>
+
+        <button [disabled]="!forma.valid" type="submit" class="btn btn-outline-success">
+          Guardar Cambios
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>
