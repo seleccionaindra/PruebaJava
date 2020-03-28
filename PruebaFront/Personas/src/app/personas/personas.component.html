@@ -1,0 +1,108 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Prueba Indra</h1>
+        <p class="lead">Aplicación CRUD para tabla personas.</p>
+    </div>
+</div>
+
+<div class="container">
+    <button type="button" class="btn btn-primary btn-lg btn-block"
+        (click)="devolverPersonas()">Ver listado de personas</button>
+</div>
+
+<br>
+
+<div class="container">
+    <button type="button" class="btn btn-primary btn-lg btn-block"
+        (click)="verMenuAgregar(); limpiarCampos()">Agregar Personas</button>
+</div>
+
+<br>
+
+<div *ngIf="agregar" class="container">
+    <form>
+        <div class="form-group">
+            <label>Nombres</label>
+            <input type="text" class="form-control" [(ngModel)]="nombresG"
+                placeholder="ingrese nombres" name="nombresG" id="nombres">
+        </div>
+        <div class="form-group">
+            <label>Apellidos</label>
+            <input type="text" class="form-control" [(ngModel)]="apellidosG"
+                placeholder="ingrese apellidos" name="apellidosG" id="apellidos">
+        </div>
+        <div class="form-group">
+            <label>Cédula</label>
+            <input type="text" class="form-control" [(ngModel)]="cedulaG"
+                placeholder="ingrese Cédula" name="cedulaG" id="cedula">
+        </div>
+        <div class="form-group">
+            <label>Género</label>
+            <input type="text" class="form-control" [(ngModel)]="generoG"
+                placeholder="ingrese Género" name="generoG" id="genero">
+        </div>
+        <div class="form-group">
+            <label>Edad</label>
+            <input type="text" class="form-control"  [(ngModel)]="edadG"
+                placeholder="ingrese edad" name="edadG" id="edad">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="guardarPersona()">Guardar</button>
+    </form>
+</div>
+
+<br>
+
+<div class="container">
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+        {{mensajeError}}
+    </div>
+</div>
+
+<br>
+
+<div class="container">
+    <div *ngIf="guardar" class="alert alert-success" role="alert">
+        Se guardó correctamente.
+    </div>
+</div>
+
+<div *ngIf="listaPersonas" class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr nf>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Cédula</th>
+                <th scope="col">Género</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Eliminar</th>
+                <th scope="col">Modificar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let persona of listaPersonas">
+                <td contenteditable="true" [textContent]="persona.nombre"
+                    (input)="persona.nombre=$event.target.textContent">{{persona.nombre}}</td>
+                <td contenteditable="true" [textContent]="persona.apellidos"
+                    (input)="persona.apellidos=$event.target.textContent">{{persona.apellidos}}</td>
+                <td>{{persona.cedula}}</td>
+                <td contenteditable="true" [textContent]="persona.genero"
+                    (input)="persona.genero=$event.target.textContent">{{persona.genero}}</td>
+                <td contenteditable="true" [textContent]="persona.edad"
+                    (input)="persona.edad=$event.target.textContent">{{persona.edad}}</td>
+                <td>
+                    <span class="table-remove">
+                        <button type="button" class="btn btn-danger"
+                            (click)="eliminarPersona(persona.cedula)">Eliminar</button>
+                    </span>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success"
+                        (click)="actualizarPersona(persona.cedula,
+                        persona.nombre, persona.apellidos, persona.genero,
+                        persona.edad)">Modificar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
