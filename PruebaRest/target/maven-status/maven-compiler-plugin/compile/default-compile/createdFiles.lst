@@ -1,0 +1,9 @@
+api\rest\indra\domain\Exception\PersonaException.class
+api\rest\indra\api\PersonaController.class
+api\rest\indra\services\PersonaServices.class
+api\rest\indra\services\IPersonaServices.class
+api\rest\indra\domain\Exception\PersonaHandlerException.class
+api\rest\indra\domain\Persona.class
+api\rest\indra\persistence\IPersonaPersistence.class
+api\rest\indra\api\IPersonaController.class
+api\rest\indra\PersonaApirestApplication.class
