@@ -40,7 +40,7 @@ public class TestPersonaService {
 		persona.setGenero("F");
 		persona.setEdad(26);
         Persona newPerson = personaService.createPersona(persona);
-        assertSame(newPerson.getId(), 6L);
+        assertSame(newPerson.getId(), 7L);
 	}
 
 	@Test
@@ -60,7 +60,7 @@ public class TestPersonaService {
 
 	@Test
 	public void testRemove() {
-		personaService.removePersona(3L);
+		personaService.removePersona(1L);
 		List<Persona> personas = personaService.getPersonas();
 		System.out.println("personas.size() "+ personas.size());
 		assertEquals(personas.size(), 5);
