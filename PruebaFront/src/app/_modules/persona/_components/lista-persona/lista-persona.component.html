@@ -1,0 +1,108 @@
+<h1 class="text-center m-3">Listado de Personas</h1>
+
+<div *ngIf="estaCargando" class="text-center m-2">
+    <div class="spinner-border" role="status"></div>
+</div>
+
+<div class="mx-auto body-container" >
+    <button type="button" class="btn btn-primary float-right mb-2" (click)="abrirPersonaForm(modalPersona, null)">Crear Persona</button>
+    <table *ngIf="personas" class="table table-striped">
+        <thead>
+        <tr class="text-center">
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Cédula</th>
+          <th scope="col">Género</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let persona of personas; index as i">
+          <td>{{ persona.nombres }}</td>
+          <td>{{ persona.apellidos}}</td>
+          <td>{{ persona.cedula }}</td>
+          <td>{{ persona.genero == 'M' ? 'Masculino' : 'Femenino'   }}</td>
+          <td>{{ persona.edad | number }}</td>
+          <td class="text-center">
+            <button type="button" class="btn btn-info mr-2" (click)="abrirPersonaForm(modalPersona, persona)" [disabled]="estaCargando">Editar</button>
+            <button type="button" class="btn btn-danger mr-2" (click)="eliminarPersona(persona.id)" [disabled]="estaCargando">Eliminar</button>
+          </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #modalPersona let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{modalTitle}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form [formGroup]="personaForm" (ngSubmit)="guardarPersona()">
+        <div class="modal-boy">
+          <div class="container">
+            <div *ngIf="estaCargando" class="text-center m-2">
+                <div class="spinner-border" role="status"></div>
+            </div>
+            <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="nombres">Nombres</label>
+                <input type="text" 
+                    class="form-control"
+                    placeholder="John"
+                    formControlName="nombres"
+                    required />
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" 
+                    class="form-control"
+                    placeholder="Doe"
+                    formControlName="apellidos"
+                    required />
+                </div>
+            </div>
+            <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="cedula">Cédula</label>
+                <input type="text" 
+                    class="form-control"
+                    placeholder="12356844"
+                    formControlName="cedula"
+                    required />
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="genero">Género</label>
+                <select 
+                    class="form-control"
+                    formControlName="genero" 
+                    required>
+                    <option value="">Seleccione un Género</option>
+                    <option value="F">Femenino</option>
+                    <option value="M">Masculino</option>
+                </select>
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="edad">Edad</label>
+                <input type="number"
+                    class="form-control"
+                    placeholder="15"
+                    formControlName="edad"
+                    required />
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success"
+            [disabled]="!personaForm.valid || estaCargando">
+            Guardar
+          </button>
+          <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">Cancelar</button>
+        </div>
+      </form>
+  </ng-template>
