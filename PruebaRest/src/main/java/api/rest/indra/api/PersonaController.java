@@ -22,6 +22,7 @@ public class PersonaController implements IPersonaController{
     private IPersonaServices personaService;
     
     @GetMapping("/get")
+    @Override
     public List<Persona> get() {
         return personaService.get();
     }

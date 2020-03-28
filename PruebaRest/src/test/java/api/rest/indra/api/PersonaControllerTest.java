@@ -17,6 +17,18 @@ public class PersonaControllerTest {
     private Persona persona;
     private Persona nuevaPersona;
     
+    private static final Long ID_REMOVER_TEST = 5L;
+    private static final Long ID_ACTUALIZA_CONSULTA_TEST = 1L;
+    
+    private static final int ID_CONSULTA_UNO_TEST = 6;
+    private static final int ID_CONSULTA_DOS_TEST = 5;
+    
+    private static final String SET_DATA_NOMBRE = "Dan";
+    private static final String SET_DATA_APELLIDO = "Brown";
+    private static final String SET_DATA_CEDULA = "1234";
+    private static final String SET_DATA_GENERO = "M";
+    private static final int SET_DATA_EDAD = 40;
+    
     @Autowired
     private PersonaController personaController;
     
@@ -59,7 +71,7 @@ public class PersonaControllerTest {
      */
     @Test
     public void testUpdate() {
-        persona.setId(1L);
+        persona.setId(ID_ACTUALIZA_CONSULTA_TEST);
         nuevaPersona = personaController.update(persona);
         assertEquals(persona.getId(), nuevaPersona.getId());
         assertEquals(persona.getNombres(), nuevaPersona.getNombres());
@@ -72,11 +84,11 @@ public class PersonaControllerTest {
     @Test
     public void testDelete() {
         List<Persona> lstPersonaInicial = personaController.get();
-        personaController.delete(5L);
+        personaController.delete(ID_REMOVER_TEST);
         List<Persona> lstPersonaActual = personaController.get();
         assertNotNull(lstPersonaActual);
-        assertEquals(lstPersonaInicial.size(), 6);
-        assertEquals(lstPersonaActual.size(), 5);
+        assertEquals(lstPersonaInicial.size(), ID_CONSULTA_UNO_TEST);
+        assertEquals(lstPersonaActual.size(), ID_CONSULTA_DOS_TEST);
     }
 
     /**
@@ -84,18 +96,18 @@ public class PersonaControllerTest {
      */
     @Test
     public void testGetPersona() {
-        persona = personaController.getPersona(1L);
+        persona = personaController.getPersona(ID_ACTUALIZA_CONSULTA_TEST);
         assertNotNull(persona);
     }
 
     private Persona setData() {
         Persona personaFunc = new Persona();
         
-        personaFunc.setNombres("Dan");
-        personaFunc.setApellidos("Brown");
-        personaFunc.setCedula("1234");
-        personaFunc.setGenero("M");
-        personaFunc.setEdad(40);
+        personaFunc.setNombres(SET_DATA_NOMBRE);
+        personaFunc.setApellidos(SET_DATA_APELLIDO);
+        personaFunc.setCedula(SET_DATA_CEDULA);
+        personaFunc.setGenero(SET_DATA_GENERO);
+        personaFunc.setEdad(SET_DATA_EDAD);
         
         return personaFunc;
     }

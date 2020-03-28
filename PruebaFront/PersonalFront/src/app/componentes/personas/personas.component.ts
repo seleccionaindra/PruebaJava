@@ -11,6 +11,7 @@ export class PersonasComponent {
 
   personas: Persona[] = [];
   loading:boolean = true;
+  loadDataError: boolean = false;
 
   constructor(private _persona: PersonaService) {
     this.cargarPersonas();
@@ -32,7 +33,7 @@ export class PersonasComponent {
       .subscribe( (personas:any[]) => {
         this.personas = personas;
         this.loading = false;
-      });
+      }, error => {this.loadDataError = true});
    }
 
 }

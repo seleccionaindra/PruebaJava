@@ -12,6 +12,8 @@ public class PersonaServices implements IPersonaServices {
 
     @Autowired
     private IPersonaPersistence personaPersistence;
+    
+    private static final String MENSAJE_ERROR_BD = "No se encuentra el registro en nuestra BD";
 
     @Override
     public List<Persona> get() {
@@ -43,7 +45,7 @@ public class PersonaServices implements IPersonaServices {
 
     private void esValidoRegistro(Long id) throws PersonaException {
         if (!personaPersistence.findById(id).isPresent()) {
-            throw new PersonaException("No se encuentra el registro en nuestra BD");
+            throw new PersonaException(MENSAJE_ERROR_BD);
         }
     }
 

@@ -1,10 +1,11 @@
 package api.rest.indra.domain;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
 @Table(name="personas")
-public class Persona {
+public class Persona implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

@@ -56,6 +56,10 @@
   <p>Si quiere agregar personas de clic en el boton Agregar</p>
 </div>
 
-<div *ngIf="loading" class="alert alert-warning" role="alert">
+<div *ngIf="loadDataError" class="alert alert-danger" role="alert">
+  Ocurrio un error inesperado, por favor contacte con el administrador.
+</div>
+
+<div *ngIf="loading && !loadDataError" class="alert alert-warning" role="alert">
   <strong>Cargando... </strong>Por favor espere un momento.
 </div>
