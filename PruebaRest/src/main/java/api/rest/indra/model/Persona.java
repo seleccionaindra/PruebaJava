@@ -13,7 +13,7 @@ public class Persona {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Long id;
 	
 	@Column (name="nombres")
 	private String nombres;
@@ -32,18 +32,18 @@ public class Persona {
 	
 	
 	
-	public Persona(String nombres, String apellidos, String cedula, String genero, String edad) {
-		super();
-		this.nombres = nombres;
-		this.apellidos = apellidos;
-		this.cedula = cedula;
-		this.genero = genero;
-		Edad = edad;
-	}
-	public Integer getId() {
+//	public Persona(String nombres, String apellidos, String cedula, String genero, String edad) {
+//		super();
+//		this.nombres = nombres;
+//		this.apellidos = apellidos;
+//		this.cedula = cedula;
+//		this.genero = genero;
+//		Edad = edad;
+//	}
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNombres() {
@@ -77,6 +77,9 @@ public class Persona {
 		Edad = edad;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", cedula=" + cedula + "]";
+	}
 
 }
