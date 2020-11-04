@@ -25,15 +25,26 @@
 			<h:outputLabel value="Edad" for="edad"/>
 			<h:inputText value="#{personaBean.edad}" id="edad" style="width:350px"/>
 		</h:panelGrid>
-		
 		<br></br>
-		<h:commandButton action="Datos" value="Consultar" style="width:350px"/>
+		<h:panelGrid columns="4" border="2">
+			<h:commandButton action="#{personaBean.acciones()}" value="Consultar"
+				style="width:50px">
+				<f:param name="action" value="2" />
+			</h:commandButton>
+			<h:commandButton action="#{personaBean.acciones()}" value="Modificar"
+				style="width:50px">
+				<f:param name="action" value="3" />
+			</h:commandButton>
+			<h:commandButton action="#{personaBean.acciones()}" value="Borrar"
+				style="width:50px">
+				<f:param name="action" value="4" />
+			</h:commandButton>
+			<h:commandButton action="index" value="Regresar" style="width:80px"/>
+		</h:panelGrid>
 		<br></br>
-		<h:commandButton action="Datos" value="Modificar" style="width:350px"/>
-		<br></br>
-		<h:commandButton action="Datos" value="Borrar" style="width:350px"/>
-		<br></br>
-		<h:commandButton action="index" value="Regresar" style="width:350px"/>
+		<h:outputLabel value="Mensaje: " for="msj" />
+		<h:outputLabel value="#{personaBean.mensajeResp}" id="msj"
+			style="width:350px" />
 	</h:form>
 </body> 
 </html>

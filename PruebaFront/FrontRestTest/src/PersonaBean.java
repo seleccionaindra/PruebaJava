@@ -1,4 +1,7 @@
+import java.util.Map;
+
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import util.PersonaCrud;
@@ -14,13 +17,26 @@ public class PersonaBean {
 	private String genero;
 	private int edad;
 	private PersonaCrud srvPersona;
-	
+	private String mensajeResp;
+	private FacesContext faces;
+
 	public PersonaBean() {
 		srvPersona = new PersonaCrud();
 	}
 	
 	public void acciones() {
-		setNombres(srvPersona.crear());
+		faces = FacesContext.getCurrentInstance();
+		Map<String, String> params = faces.getExternalContext().getRequestParameterMap();
+		
+		int action = Integer.parseInt( (String) params.get("action") );
+		
+		switch (action) {
+			case 1 : mensajeResp = srvPersona.crear(nombres,apellidos,cedula,genero,edad);
+			case 2 : mensajeResp = srvPersona.consultar(id);
+			case 3 : mensajeResp = srvPersona.modificar(id,nombres,apellidos,cedula,genero,edad);
+			case 4 : mensajeResp = srvPersona.borrar(id);
+			default : mensajeResp = "Opción inválida.";
+		}
 	}
 	
 	public PersonaCrud getSrvPersona() {
@@ -64,6 +80,14 @@ public class PersonaBean {
 	}
 	public void setEdad(int edad) {
 		this.edad = edad;
+	}
+	
+	public String getMensajeResp() {
+		return mensajeResp;
+	}
+
+	public void setMensajeResp(String mensajeResp) {
+		this.mensajeResp = mensajeResp;
 	}
 	
 }
