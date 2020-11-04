@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
@@ -8,7 +9,7 @@ import util.PersonaCrud;
 
 @Named
 @RequestScoped
-public class PersonaBean {
+public class PersonaBean implements Serializable{
 	
 	private Long id;
 	private String nombres;
