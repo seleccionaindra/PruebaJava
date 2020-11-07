@@ -36,15 +36,6 @@ public interface PersonaService
      */
     List<PersonaRespuestaDto> listar();
     
-    /**
-     * Metodo que permite buscar las personas por su nombre
-     * @author Kaleth Bahena
-     * @version 0.0.1 2020/11/06
-     * @since 0.0.1 2020/11/06
-     * @param peticion datos de la peticion
-     * @return PersonaRespuestaDto
-     */
-    List<PersonaRespuestaDto> buscarPorNombre(String nombre);
     
     /**
      * Metodo que permite eliminar una persona por su id
@@ -65,14 +56,4 @@ public interface PersonaService
      * @return PersonaRespuestaDto
      */
     PersonaRespuestaDto actualizar(Long id, CrearPersonaPeticionDto peticion);
-    
-    /**
-     * Metodo que permite buscar una persona por su id
-     * @author Kaleth Bahena
-     * @version 0.0.1 2020/11/06
-     * @since 0.0.1 2020/11/06
-     * @param peticion datos de la peticion
-     * @return PersonaRespuestaDto
-     */
-    PersonaRespuestaDto buscarPorId(Long id);
 }

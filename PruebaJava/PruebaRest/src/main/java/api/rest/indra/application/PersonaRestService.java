@@ -76,22 +76,6 @@ public class PersonaRestService
     }
     
     /**
-     * Metodo que permite buscar las personas por su nombre
-     * @author Kaleth Bahena
-     * @version 0.0.1 2020/11/06
-     * @since 0.0.1 2020/11/06
-     * @param peticion datos de la peticion
-     * @return PersonaRespuestaDto
-     */
-    @GetMapping(value = "/buscar-nombre/{nombre}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<PersonaRespuestaDto>> buscarPorNombre(@PathVariable("nombre") String nombre)
-    {
-        
-        List<PersonaRespuestaDto> respuesta = getPersonaService().buscarPorNombre(nombre);
-        return ResponseEntity.ok(respuesta);
-    }
-    
-    /**
      * Metodo que permite eliminar una persona por su id
      * @author Kaleth Bahena
      * @version 0.0.1 2020/11/06
@@ -121,18 +105,4 @@ public class PersonaRestService
         return ResponseEntity.ok(respuesta);
     }
     
-    /**
-     * Metodo que permite buscar una persona por su id
-     * @author Kaleth Bahena
-     * @version 0.0.1 2020/11/06
-     * @since 0.0.1 2020/11/06
-     * @param peticion datos de la peticion
-     * @return PersonaRespuestaDto
-     */
-    @GetMapping(value = "/buscar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PersonaRespuestaDto> buscarPorId(@PathVariable("id") Long id)
-    {
-        PersonaRespuestaDto respuesta = getPersonaService().buscarPorId(id);
-        return ResponseEntity.ok(respuesta);
-    }
 }

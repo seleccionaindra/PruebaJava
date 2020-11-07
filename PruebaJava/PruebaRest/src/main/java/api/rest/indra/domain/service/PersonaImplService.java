@@ -30,6 +30,7 @@ import lombok.Getter;
 @Validated
 class PersonaImplService implements PersonaService
 {
+    private static final String MSG_PERSONA_NOTFOUND = "La persona no existe!";
     @Autowired
     @Getter
     private PersonaRepository personaRepository;
@@ -100,24 +101,6 @@ class PersonaImplService implements PersonaService
     
     /*
      * (non-Javadoc)
-     * @see api.rest.indra.domain.service.PersonaService#buscarPorNombre(java.lang.String)
-     * @author Kaleth Bahena
-     * @version 0.0.1 2020/11/06
-     * @since 0.0.1 2020/11/0
-     */
-    @Override
-    public List<PersonaRespuestaDto> buscarPorNombre(String nombre)
-    {
-        List<Persona> listadoPersona = getPersonaRepository().findByNombres(nombre);
-        if (CollectionUtils.isEmpty(listadoPersona))
-        {
-            throw new DataNotFoundException(String.format("No se encontraron personas con el nombre %s:", nombre));
-        }
-        return listadoPersona.stream().map(mapearAPersonaRespuestaDto()).collect(Collectors.toList());
-    }
-    
-    /*
-     * (non-Javadoc)
      * @see api.rest.indra.domain.service.PersonaService#eliminar(java.lang.Long)
      * @author Kaleth Bahena
      * @version 0.0.1 2020/11/06
@@ -126,7 +109,7 @@ class PersonaImplService implements PersonaService
     @Override
     public void eliminar(Long id)
     {
-        Persona persona = getPersonaRepository().findById(id).orElseThrow(() -> new DataNotFoundException("La persona no existe!"));
+        Persona persona = getPersonaRepository().findById(id).orElseThrow(() -> new DataNotFoundException(MSG_PERSONA_NOTFOUND));
         getPersonaRepository().delete(persona);
     }
     
@@ -140,7 +123,7 @@ class PersonaImplService implements PersonaService
     @Override
     public PersonaRespuestaDto actualizar(Long id, CrearPersonaPeticionDto peticion)
     {
-        Persona persona = getPersonaRepository().findById(id).orElseThrow(() -> new DataNotFoundException("La persona no existe!"));
+        Persona persona = getPersonaRepository().findById(id).orElseThrow(() -> new DataNotFoundException(MSG_PERSONA_NOTFOUND));
         
         persona.setApellidos(peticion.getApellidos());
         persona.setCedula(peticion.getCedula());
@@ -151,17 +134,4 @@ class PersonaImplService implements PersonaService
         return mapearAPersonaRespuestaDto().apply(persona);
     }
     
-    /*
-     * (non-Javadoc)
-     * @see api.rest.indra.domain.service.PersonaService#buscarPorId(java.lang.Long)
-     * @author Kaleth Bahena
-     * @version 0.0.1 2020/11/06
-     * @since 0.0.1 2020/11/06
-     */
-    @Override
-    public PersonaRespuestaDto buscarPorId(Long id)
-    {
-        Persona persona = getPersonaRepository().findById(id).orElseThrow(() -> new DataNotFoundException("La persona no existe!"));
-        return mapearAPersonaRespuestaDto().apply(persona);
-    }
 }
