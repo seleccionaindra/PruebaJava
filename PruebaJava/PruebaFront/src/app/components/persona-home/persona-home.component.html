@@ -1,7 +1,7 @@
 <div fxLayout="row" class="m-top-30">
   <div fxFlex="100" fxLayoutAlign="center" fxLayoutGap="15px">
     <div fxLayout="column" fxFlex="40">
-      <app-persona-form (saveEvent)="crearPersona($event)" [persona]="personaActualizar"></app-persona-form>
+      <app-persona-form (saveEvent)="crearPersona($event)" [persona]="personaActualizar" (updateEvent)="actualizarPersona($event)"></app-persona-form>
     </div>
     <div fxLayout="column" fxFlex="60">
       <app-persona-list [listaPersonas]="listaPersonas" (eliminarEvent)="eliminarPersona($event)" (irActualizarEvent)="goActualizar($event)"></app-persona-list>

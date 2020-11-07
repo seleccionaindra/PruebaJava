@@ -34,5 +34,8 @@ export class PersonaHomeComponent implements OnInit {
    console.log(this.personaActualizar)
    this.idPersonaActualizar = persona.id;
   }
+  actualizarPersona(persona: Model.CrearPersonaPeticionDto){
+    this.pService.actualizar(this.idPersonaActualizar, persona).subscribe()
+  }
 
 }

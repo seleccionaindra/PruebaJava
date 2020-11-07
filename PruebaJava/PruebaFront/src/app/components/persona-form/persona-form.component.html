@@ -65,7 +65,7 @@
 
             <div class="column is-12" fxLayoutAlign="center" fxLayoutGap="15px">
               <button color="primary" mat-flat-button type="button" [disabled]="personaForm.invalid"
-                (click)="savePersona()">Registrar</button>
+                (click)="savePersona()">{{registrar ? "Registrar": "Actualizar"}}</button>
             </div>
           </div>
         </form>

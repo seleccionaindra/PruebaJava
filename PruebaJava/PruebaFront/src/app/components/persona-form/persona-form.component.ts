@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Observable } from 'rxjs';
@@ -9,12 +17,25 @@ import * as Model from './../../lib/model';
   templateUrl: './persona-form.component.html',
   styleUrls: ['./persona-form.component.scss'],
 })
-export class PersonaFormComponent implements OnInit {
-  @Input() persona: Observable<Model.CrearPersonaPeticionDto>;
+export class PersonaFormComponent implements OnInit, OnChanges {
+  @Input() persona: Model.CrearPersonaPeticionDto;
   @Output() saveEvent = new EventEmitter<Model.CrearPersonaPeticionDto>();
-
+  @Output() updateEvent = new EventEmitter<Model.CrearPersonaPeticionDto>();
+  registrar: boolean = true;
   personaForm: FormGroup;
   constructor(private fb: FormBuilder) {}
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.persona && changes.persona.currentValue) {
+      this.registrar = false;
+      this.personaForm.patchValue({
+        nombres: this.persona.nombres,
+        apellidos: this.persona.apellidos,
+        cedula: this.persona.cedula,
+        genero: this.persona.genero,
+        edad: this.persona.edad,
+      });
+    }
+  }
 
   ngOnInit(): void {
     this.personaForm = this.fb.group({
@@ -38,17 +59,6 @@ export class PersonaFormComponent implements OnInit {
       genero: ['', [Validators.required]],
       edad: ['', [Validators.required]],
     });
-    if (this.persona) {
-      this.persona.subscribe((persona) => {
-        this.personaForm.patchValue({
-          nombres: persona.nombres,
-          apellidos: persona.apellidos,
-          cedula: persona.cedula,
-          genero: persona.genero,
-          edad: persona.edad,
-        });
-      });
-    }
   }
 
   get apellidos() {
@@ -126,8 +136,12 @@ export class PersonaFormComponent implements OnInit {
       genero: this.genero.value,
       edad: this.edad.value,
     };
-
-    this.saveEvent.emit(persona);
+    if (this.registrar) {
+      this.saveEvent.emit(persona);
+    } else {
+      this.updateEvent.emit(persona);
+    }
+    this.registrar = true;
     this.personaForm.reset();
   }
 }
