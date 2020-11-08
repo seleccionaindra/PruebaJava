@@ -1,0 +1,50 @@
+<div class="card bg-secondary text-white border-primary mb-3">
+    <div class="card-header">{{ _tituloFormulario }}</div>
+    <div class="card-body">
+        <form>
+            <div class="form-group row">
+                <label for="cedula" class="col-form-label col-sm-2">Cedula:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" [(ngModel)]="_persona.cedula" name="cedula">
+                </div>
+                <label for="edad" class="col-form-label col-sm-2">Edad:</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" [(ngModel)]="_persona.edad" name="edad">
+                </div>
+                <label for="genero" class="col-form-label col-sm-2">Genero:</label>
+                <div class="col-sm-1">
+                    <select class="form-control" [(ngModel)]="_persona.genero" name="genero">
+                        <option value="undefined" ng-selected="_persona.genero == 'undefined'" disabled>Select</option>
+                        <option value="F" ng-selected="_persona.genero == 'F'">Mujer</option>
+                        <option value="M" ng-selected="_persona.genero == 'M'">Hombre</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <label for="nombres" class="col-form-label col-sm-2">Nombres:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" [(ngModel)]="_persona.nombres" name="nombres">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="apellidos" class="col-form-label col-sm-2">Apellidos:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" [(ngModel)]="_persona.apellidos" name="apellidos">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-2" *ngIf="_persona.saved == false" >
+                    <button class="btn btn-success"role="button" (click)='createPersona()'>Insertar</button>
+                </div>
+                <div class="col-sm-2" *ngIf="(_persona.saved == true) || (_persona.saved == undefined)" >
+                    <button class="btn btn-primary" role="button" (click)='updatePersona()'>Actualizar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
