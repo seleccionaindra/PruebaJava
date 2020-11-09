@@ -1,0 +1,9 @@
+<div class="container">
+    <button (click)="mostrar=!mostrar" class="btn btn-outline-primary my-3">
+        {{mostrar==true? 'Ocultar':'Mostrar'}}
+    </button>
+
+    <div *ngIf="mostrar" class="card text-white bg-primary mb-3">
+        <app-personas></app-personas>
+    </div>
+</div>
