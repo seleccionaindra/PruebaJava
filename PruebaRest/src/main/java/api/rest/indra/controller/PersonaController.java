@@ -49,6 +49,6 @@ public class PersonaController {
 		ResponseDTO responseDTO = personaServiceImpl.actualizarPersona(persona);
 		return new ResponseEntity<>(responseDTO, responseDTO.getHttpStatus());
 	}
-	
+	//comentario
 
 }
