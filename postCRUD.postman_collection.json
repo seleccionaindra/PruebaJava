@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "3ada5d78-15ac-4e72-819d-c4d55aa8d318",
+		"name": "postCRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crearPersona",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Carlos\",\r\n    \"apellidos\": \"Galeano\",\r\n    \"cedula\": \"79150286\",\r\n    \"genero\": \"M\",\r\n    \"edad\": \"65\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8989/svc/v1/personas/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"svc",
+						"v1",
+						"personas",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarPersonas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8989/svc/v1/personas/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"svc",
+						"v1",
+						"personas",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificarPersonas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Carlos\",\r\n    \"apellidos\": \"Galeano\",\r\n    \"genero\": \"M\",\r\n    \"edad\": \"65\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8989/svc/v1/personas/actualizar/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"svc",
+						"v1",
+						"personas",
+						"actualizar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultarPersona",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8989/svc/v1/personas/consultar/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"svc",
+						"v1",
+						"personas",
+						"consultar",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminarPersona",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8989/svc/v1/personas/borrar/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"svc",
+						"v1",
+						"personas",
+						"borrar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
